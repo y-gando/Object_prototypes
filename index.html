@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Object-oriented JavaScript class further exercises</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+      function Person(first, last, age, gender, interests) {
+        this.name = {
+          'first': first,
+          'last' : last
+        };
+        this.age = age;
+        this.gender = gender;
+        this.interests = interests;
+        this.bio = function() {
+          // 最初に文字列を定義し、それが常に同じであることが分かっているバイオの部分と等しくなるようにします。
+          // 常に同じであることが分かっているバイオの部分と等しくなるようにします。          var string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+          // の代名詞の部分を格納する変数を定義します。
+          var pronoun;
+
+          // gender の値が何であるかを調べ、代名詞を設定する。
+          // それぞれのケースで適切な値に設定する
+          if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+            pronoun = 'He likes ';
+          } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+            pronoun = 'She likes ';
+          } else {
+            pronoun = 'They like ';
+          }
+
+          // 代名詞の文字列を主文字列の末尾に追加する
+          string += pronoun;
+
+          // 別の条件を使って、第2文の最後の部分を構成します。
+          // 2つ目の文の最後の部分を、興味のある人の数が多いか少ないかによって構成する。
+          // is 1, 2, or 3
+          if(this.interests.length === 1) {
+            string += this.interests[0] + '.';
+          } else if(this.interests.length === 2) {
+            string += this.interests[0] + ' and ' + this.interests[1] + '.';
+          } else {
+            // 興味が 2 つ以上ある場合は、それらをループします。
+            // すべてをループし、それぞれをコンマで区切ってメインの文字列に追加する。
+            // 最後の 1 つを除いて、and と full stop が必要である。
+            for(var i = 0; i < this.interests.length; i++) {
+              if(i === this.interests.length - 1) {
+                string += 'and ' + this.interests[i] + '.';
+              } else {
+                string += this.interests[i] + ', ';
+              }
+            }
+          }
+
+          // 最後に、文字列を構築して、それをalert()します。
+          alert(string);
+        };
+        this.greeting = function() {
+          alert('Hi! I\'m ' + this.name.first + '.');
+        };
+      };
+
+      let person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
+    </script>
+</html>
